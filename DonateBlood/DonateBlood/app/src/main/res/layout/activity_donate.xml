@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    
+    >
+
+
+
+    <include
+        android:id="@+id/app_toolbar"
+        layout="@layout/app_bar" />
+
+
+
+<ScrollView
+    android:layout_below="@id/app_toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:id="@+id/regHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="@dimen/screenPaddingLeft"
+            android:text="Register your details"
+            android:textColor="@color/screen_text_color"
+            android:textSize="@dimen/textSizeOnScreens" />
+
+        <EditText
+            android:id="@+id/edtTxtEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/regHeader"
+            android:layout_marginTop="20dp"
+            android:hint="Enter your Email"
+            android:paddingLeft="@dimen/screenPaddingLeft"
+            android:singleLine="true"
+            android:textColor="@color/screen_text_color"
+            android:textSize="@dimen/textSizeOnScreens" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edtTxtEmail"
+            android:id="@+id/txtVwPhoneSuffix"
+            android:paddingLeft="@dimen/screenPaddingLeft"
+            android:text="Please enter country code (eg) 91 your number"
+            android:textColor="@color/screen_text_color"
+            android:textSize="@dimen/textSizeOnScreens"
+            />
+
+        <EditText
+            android:id="@+id/edtTxtMobile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtVwPhoneSuffix"
+            android:layout_marginTop="20dp"
+            android:hint="phone must for AB+,AB-,A-,B-,O-"
+            android:inputType="number"
+            android:paddingLeft="@dimen/screenPaddingLeft"
+            android:singleLine="true"
+            android:textColor="@color/screen_text_color"
+            android:textSize="@dimen/textSizeOnScreens" />
+
+
+        <EditText
+            android:id="@+id/edtTxtName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edtTxtMobile"
+            android:layout_marginTop="20dp"
+            android:hint="Enter your first name"
+            android:paddingLeft="@dimen/screenPaddingLeft"
+            android:singleLine="true"
+            android:textColor="@color/screen_text_color"
+            android:textSize="@dimen/textSizeOnScreens" />
+
+
+        <RelativeLayout
+            android:id="@+id/gender_container"
+            android:paddingLeft="@dimen/screenPaddingLeft"
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edtTxtName">
+
+
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="Select Gender"
+                android:textColor="@color/screen_text_color"
+                android:textSize="@dimen/textSizeOnScreens"
+                />
+
+
+            <RadioGroup
+                android:id="@+id/genderRadioGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text"
+                android:checkedButton="@+id/sound">
+
+                <RadioButton
+                    android:id="@+id/sound"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:textSize="@dimen/textSizeOnScreens"
+                    android:text="Male" />
+
+                <RadioButton
+                    android:id="@+id/vibration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:textSize="@dimen/textSizeOnScreens"
+                    android:text="Female" />
+            </RadioGroup>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner_layout"
+            android:paddingLeft="@dimen/screenPaddingLeft"
+            android:layout_below="@id/gender_container"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/group_prompt"
+                android:textColor="@color/screen_text_color"
+                android:textSize="@dimen/textSizeOnScreens"
+                />
+
+
+            <Spinner
+
+                android:id="@+id/spinnerBloodGroup"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:entries="@array/blood_group_arrays"
+                android:prompt="@string/group_prompt" />
+
+
+        </LinearLayout>
+
+
+
+
+        <CheckBox
+            android:id="@+id/chkBx18"
+            android:layout_below="@id/spinner_layout"
+            android:paddingLeft="@dimen/screenPaddingLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="I am Over 18"
+            android:textColor="@color/screen_text_color"
+            android:textSize="@dimen/textSizeOnScreens"
+            android:visibility="gone"
+            />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:layout_below="@id/chkBx18"
+            android:layout_marginBottom="10dp"
+            >
+
+
+            <Button
+                android:clickable="true"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:text="Register"
+                android:id="@+id/btnRegister"
+                android:background="@color/accent"
+                />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</ScrollView>
+
+
+
+
+</RelativeLayout>
