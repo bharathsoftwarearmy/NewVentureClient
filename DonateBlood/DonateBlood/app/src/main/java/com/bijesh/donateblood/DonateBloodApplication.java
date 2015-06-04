@@ -39,10 +39,13 @@ public class DonateBloodApplication extends Application {
         RestResponseHandlerThread.init();
 
 
+
+
         // Enable Local Datastore.
         Parse.enableLocalDatastore(this);
 
         Parse.initialize(this, "KJfdKjZnGbTBX1OzEcvIWIehgxsr2G46f0DLAGar", "o2zXEa0uO27sdSIwu9TXczWe2rEAfJ23wtuSBvVD");
+
 
 
 //        ParseACL defaultAcl = new ParseACL();
@@ -54,7 +57,7 @@ public class DonateBloodApplication extends Application {
 
 
         handler = new Handler();
-//        ParseInstallation.getCurrentInstallation().saveEventually();
+        ParseInstallation.getCurrentInstallation().saveEventually();
 
 
 

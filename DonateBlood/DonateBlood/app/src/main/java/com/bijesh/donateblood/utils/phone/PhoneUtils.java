@@ -3,6 +3,7 @@ package com.bijesh.donateblood.utils.phone;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.content.Context;
+import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.util.Patterns;
@@ -15,6 +16,13 @@ import java.util.regex.Pattern;
 public class PhoneUtils {
 
     private static final String TAG = PhoneUtils.class.getCanonicalName();
+
+
+    public static String getUniqueId(Context context){
+        String retString = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+        Log.d(TAG,"retString "+retString);
+        return retString;
+    }
 
 //    public static String getPrimaryMobileNumber(Context context) {
 //        String retNumber = null;

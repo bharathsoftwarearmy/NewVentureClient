@@ -13,6 +13,7 @@ import com.bijesh.donateblood.models.ui.BaseModel;
 import com.bijesh.donateblood.models.ui.Installation;
 import com.bijesh.donateblood.models.ui.InstallationModel;
 import com.bijesh.donateblood.models.ui.Operation;
+import com.bijesh.donateblood.utils.calendar.TimeFormatUtil;
 import com.bijesh.donateblood.utils.phone.NetworkUtil;
 
 import java.util.HashMap;
@@ -64,7 +65,7 @@ public class InstallationController extends BaseController {
                 map.put("operation", Integer.toString(SET_INSTALLATION_DATA));
                 aHttpRequest.setMethod(RestClient.POST);
                 aHttpRequest.setHeaders(map);
-                aHttpRequest.setData(prepareBody("2015-06-03", "GMT"));
+                aHttpRequest.setData(prepareBody(installation.getUniqueId(),installation.getTime(),installation.getTimezone()));
                 aHttpRequest.setTag(TAG);
                 submit(aHttpRequest);
                 Operation opr = mOperationsModel.getOperation(SET_INSTALLATION_DATA);
@@ -79,12 +80,12 @@ public class InstallationController extends BaseController {
         }
     }
 
-    int testUD = 343434342;
-    private String prepareBody(String time, String timezone) {
+
+    private String prepareBody(String uniqueId,String time, String timezone) {
         // Stubbed parameter
         String str = "{"
                 +    "\"Data\"" + ":"+ "{"
-                +        "\"uniqueID\"" + ":" + "\""+ testUD +"\""+","
+                +        "\"uniqueID\"" + ":" + "\""+ uniqueId +"\""+","
                 +        "\"time\"" + ":" + "\""+time+"\""+","
                 +        "\"timezone\""   + ":" + "\""+timezone+"\""
                 +    "}"

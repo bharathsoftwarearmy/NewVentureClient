@@ -9,12 +9,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.bijesh.donateblood.DonateBloodApplication;
 import com.bijesh.donateblood.R;
 import com.bijesh.donateblood.activities.HomeActivity;
 import com.bijesh.donateblood.controllers.InstallationController;
 import com.bijesh.donateblood.controllers.UIInterface;
+import com.bijesh.donateblood.models.ui.Installation;
 import com.bijesh.donateblood.models.ui.Operation;
 import com.bijesh.donateblood.storage.singleton.PreviousRequest;
+import com.bijesh.donateblood.utils.calendar.CalendarUtil;
+import com.bijesh.donateblood.utils.calendar.TimeFormatUtil;
+import com.bijesh.donateblood.utils.phone.PhoneUtils;
 
 /**
  * Created by Bijesh on 23-05-2015.
@@ -54,7 +59,11 @@ public class HomeFragment extends Fragment implements UIInterface {
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                InstallationController.instance().intallationProcess(getActivity(),null);
+                Installation installation = new Installation();
+                installation.setUniqueId(PhoneUtils.getUniqueId(DonateBloodApplication.getInstance()));
+                installation.setTime(TimeFormatUtil.timeFormat(System.currentTimeMillis()));
+                installation.setTimezone(CalendarUtil.getDeviceTimeZone());
+                InstallationController.instance().intallationProcess(getActivity(), installation);
             }
         },700);
     }
