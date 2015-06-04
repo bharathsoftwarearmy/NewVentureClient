@@ -7,6 +7,7 @@ import android.provider.Settings;
 import android.util.Log;
 
 import com.bijesh.donateblood.activities.HomeActivity;
+import com.bijesh.donateblood.controllers.RestResponseHandlerThread;
 import com.bijesh.donateblood.httpwrapper.RestClientFactory;
 import com.bijesh.donateblood.httpwrapper.impl.DonateBloodRestClient;
 import com.parse.Parse;
@@ -35,12 +36,16 @@ public class DonateBloodApplication extends Application {
 //        Volley init
         DonateBloodRestClient lClient = (DonateBloodRestClient) RestClientFactory.getDefaultRestClient();
         lClient.init(this);
+        RestResponseHandlerThread.init();
+
+
 
 
         // Enable Local Datastore.
         Parse.enableLocalDatastore(this);
 
         Parse.initialize(this, "KJfdKjZnGbTBX1OzEcvIWIehgxsr2G46f0DLAGar", "o2zXEa0uO27sdSIwu9TXczWe2rEAfJ23wtuSBvVD");
+
 
 
 //        ParseACL defaultAcl = new ParseACL();
@@ -52,7 +57,7 @@ public class DonateBloodApplication extends Application {
 
 
         handler = new Handler();
-//        ParseInstallation.getCurrentInstallation().saveEventually();
+        ParseInstallation.getCurrentInstallation().saveEventually();
 
 
 

@@ -1,6 +1,8 @@
 package com.bijesh.donateblood.controllers;
 
 
+import android.util.Log;
+
 import com.bijesh.donateblood.AppConstants;
 import com.bijesh.donateblood.httpwrapper.RestClient;
 import com.bijesh.donateblood.httpwrapper.RestClientFactory;
@@ -20,6 +22,8 @@ import java.util.ArrayList;
  */
 public class BaseController implements RestClient.ResponseListener,
         RestClient.ErrorListener {
+
+    private static final String TAG = BaseController.class.getCanonicalName();
 
     ArrayList<BaseModel> mModels = new ArrayList<BaseModel>();
     ArrayList<UIInterface> mUIs =  new ArrayList<UIInterface>();
@@ -138,6 +142,7 @@ public class BaseController implements RestClient.ResponseListener,
             }
 
             opr.setState(Operation.FINISHED);
+            Log.d(TAG, "aResponse.getDataAsString() "+aResponse.getDataAsString());
             JSONObject ljson = new JSONObject(aResponse.getDataAsString());
             Response lResponse = new Response();
             lResponse.setData(ljson.getJSONObject("Data"));
