@@ -4,10 +4,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bijesh.donateblood.DonateBloodApplication;
 import com.bijesh.donateblood.R;
@@ -21,10 +23,13 @@ import com.bijesh.donateblood.utils.calendar.CalendarUtil;
 import com.bijesh.donateblood.utils.calendar.TimeFormatUtil;
 import com.bijesh.donateblood.utils.phone.PhoneUtils;
 
+import java.util.Observable;
+import java.util.Observer;
+
 /**
  * Created by Bijesh on 23-05-2015.
  */
-public class HomeFragment extends Fragment implements UIInterface {
+public class HomeFragment extends Fragment implements UIInterface, Observer {
 
     private static final String TAG = HomeFragment.class.getCanonicalName();
     private TextView mTxtViewStatus;
@@ -51,6 +56,8 @@ public class HomeFragment extends Fragment implements UIInterface {
 
 
         mTxtViewMessages.setText(getMessage());
+        InstallationController.instance().getInstallationModel().addObserver(this);
+        InstallationController.instance().register(this);
         requestWebService();
     }
 
@@ -91,11 +98,27 @@ public class HomeFragment extends Fragment implements UIInterface {
 
     @Override
     public void onError(Operation opr) {
+        Log.d(TAG,"onError ");
+        if (opr == null)
+            return;
+        if (opr.getId() == Operation.OperationCode.SET_INSTALLATION.ordinal()) {
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(getActivity(),"User already exists ",Toast.LENGTH_LONG).show();
+                }
+            });
 
+        }
     }
 
     @Override
     public void onSuccess(Operation opr) {
+        Log.d(TAG,"onSuccess ");
+    }
 
+    @Override
+    public void update(Observable observable, Object data) {
+        Log.d(TAG,"$$$ update ");
     }
 }

@@ -145,20 +145,21 @@ public class BaseController implements RestClient.ResponseListener,
             Log.d(TAG, "aResponse.getDataAsString() "+aResponse.getDataAsString());
             JSONObject ljson = new JSONObject(aResponse.getDataAsString());
             Response lResponse = new Response();
-            lResponse.setData(ljson.getJSONObject("Data"));
+            lResponse.setData(ljson.getJSONObject("response"));
             lResponse.setHttpStatusCode(aResponse.getHttpStatus());
-            lResponse.setResponseStatus(ljson.getJSONObject("Response").getString("ResponseStatus"));
-            lResponse.setResponseCode(ljson.getJSONObject("Response").getInt("ResponseCode"));
-            lResponse.setResponseDescription(ljson.getJSONObject("Response").getString("ResponseDescription"));
+//            lResponse.setResponseStatus(ljson.getJSONObject("response").getString("description"));
+            lResponse.setResponseCode(ljson.getJSONObject("response").getInt("code"));
+            lResponse.setResponseDescription(ljson.getJSONObject("response").getString("description"));
             if(lResponse.getResponseCode() != AppConstants.REQUEST_SUCCESS){
                 // this is error .
+                Log.d(TAG,"$$$$$$$$$$ error ");
                 handleErrorForOperation(lResponse,opr);
                 return;
             }
             handleResponseForOperation(lResponse, opr);
 
         } catch( JSONException e ){
-
+            e.printStackTrace();
         }
     }
 }
