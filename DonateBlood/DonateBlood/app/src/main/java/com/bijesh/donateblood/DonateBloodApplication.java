@@ -41,27 +41,27 @@ public class DonateBloodApplication extends Application {
 
 
 
-        // Enable Local Datastore.
-        Parse.enableLocalDatastore(this);
-
-        Parse.initialize(this, "KJfdKjZnGbTBX1OzEcvIWIehgxsr2G46f0DLAGar", "o2zXEa0uO27sdSIwu9TXczWe2rEAfJ23wtuSBvVD");
-
-
-
-//        ParseACL defaultAcl = new ParseACL();
-//        defaultAcl.setPublicReadAccess(true);
-//        ParseACL.setDefaultACL(defaultAcl, true);
-
-        PushService.setDefaultPushCallback(this, HomeActivity.class);
-        ParseInstallation.getCurrentInstallation().getInstallationId();
-
-
-        handler = new Handler();
-        ParseInstallation.getCurrentInstallation().saveEventually();
-
-
-
-       registerPushService();
+//        // Enable Local Datastore.
+//        Parse.enableLocalDatastore(this);
+//
+//        Parse.initialize(this, "KJfdKjZnGbTBX1OzEcvIWIehgxsr2G46f0DLAGar", "o2zXEa0uO27sdSIwu9TXczWe2rEAfJ23wtuSBvVD");
+//
+//
+//
+////        ParseACL defaultAcl = new ParseACL();
+////        defaultAcl.setPublicReadAccess(true);
+////        ParseACL.setDefaultACL(defaultAcl, true);
+//
+//        PushService.setDefaultPushCallback(this, HomeActivity.class);
+//        ParseInstallation.getCurrentInstallation().getInstallationId();
+//
+//
+//        handler = new Handler();
+//        ParseInstallation.getCurrentInstallation().saveEventually();
+//
+//
+//
+//       registerPushService();
 
 
     }

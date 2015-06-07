@@ -5,8 +5,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 
 import com.bijesh.donateblood.R;
-import com.bijesh.donateblood.utils.calendar.CalendarUtil;
-import com.bijesh.donateblood.utils.calendar.TimeFormatUtil;
+import com.bijesh.donateblood.storage.DonateBloodFileStorage;
 
 /**
  * Created by bijesh on 6/4/2015.
@@ -18,6 +17,8 @@ public class TestActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test_activity);
-        Log.d(TAG, "time zone "+ CalendarUtil.getDeviceTimeZone());
+        DonateBloodFileStorage.setStringData(this, "test1", "this is for test");
+        Log.d(TAG,"$$$ onAct value is "+DonateBloodFileStorage.getStringData(this, "test1"));
+//        Log.d(TAG, "time zone "+ CalendarUtil.getDeviceTimeZone());
     }
 }

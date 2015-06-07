@@ -18,6 +18,8 @@ import com.bijesh.donateblood.controllers.InstallationController;
 import com.bijesh.donateblood.controllers.UIInterface;
 import com.bijesh.donateblood.models.ui.Installation;
 import com.bijesh.donateblood.models.ui.Operation;
+import com.bijesh.donateblood.storage.DonateBloodFileStorage;
+import com.bijesh.donateblood.storage.FileConstants;
 import com.bijesh.donateblood.storage.singleton.PreviousRequest;
 import com.bijesh.donateblood.utils.calendar.CalendarUtil;
 import com.bijesh.donateblood.utils.calendar.TimeFormatUtil;
@@ -106,6 +108,8 @@ public class HomeFragment extends Fragment implements UIInterface, Observer {
                 @Override
                 public void run() {
                     Toast.makeText(getActivity(),"User already exists ",Toast.LENGTH_LONG).show();
+                    DonateBloodFileStorage.setStringData(getActivity(), FileConstants.IS_USER_EXISTS,"true");
+                    Log.d(TAG,"$$$ user already exists "+DonateBloodFileStorage.getStringData(getActivity(),FileConstants.IS_USER_EXISTS));
                 }
             });
 

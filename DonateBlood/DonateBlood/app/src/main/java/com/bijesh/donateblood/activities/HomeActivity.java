@@ -64,7 +64,7 @@ public class HomeActivity extends ActionBarActivity {
         mMainFrameLayout = (FrameLayout) findViewById(R.id.home_container);
         init();
 
-        showPushMessage();
+//        showPushMessage();
 
 //        new Thread(new Runnable() {
 //            @Override
