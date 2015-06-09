@@ -9,12 +9,16 @@ import com.bijesh.donateblood.controllers.operationfactories.InstallationControl
 import com.bijesh.donateblood.controllers.operationfactories.OperationFactory;
 import com.bijesh.donateblood.httpwrapper.RestClient;
 import com.bijesh.donateblood.httpwrapper.impl.DonateBloodHttpRequest;
+import com.bijesh.donateblood.httpwrapper.impl.Response;
 import com.bijesh.donateblood.models.ui.BaseModel;
 import com.bijesh.donateblood.models.ui.Installation;
 import com.bijesh.donateblood.models.ui.InstallationModel;
 import com.bijesh.donateblood.models.ui.Operation;
 import com.bijesh.donateblood.utils.calendar.TimeFormatUtil;
 import com.bijesh.donateblood.utils.phone.NetworkUtil;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 
@@ -56,8 +60,8 @@ public class InstallationController extends BaseController {
         if(mOperationsModel.addOperation(mOperationFactory.createOperation(SET_INSTALLATION_DATA,Operation.CREATED))){
             if (NetworkUtil.isNetworkAvailable(context)) {
                 DonateBloodHttpRequest aHttpRequest = (DonateBloodHttpRequest)createRequest();
-                String url = "http://10.5.50.4:8080/DonateBloodWeb/Installation";
-                aHttpRequest.setUrl("http://10.5.50.4:8080/DonateBloodWeb/Installation");
+                String url = "http://192.168.56.1:8080/DonateBloodWeb/Installation";//"http://10.5.50.4:8080/DonateBloodWeb/Installation";
+                aHttpRequest.setUrl(url);
                 Log.d(TAG, "$$$ url "+url);
                 HashMap<String, String> map = (HashMap<String, String>)aHttpRequest.getHeaders();
                 if (map == null)
@@ -94,4 +98,27 @@ public class InstallationController extends BaseController {
         return str;
     }
 
+    @Override
+    public void handleResponseForOperation(Response aResponse, Operation aOperation) {
+
+        Log.d(TAG,"Operation "+aOperation.getId());
+        JSONObject lData = aResponse.getData();
+        try {
+            if (aOperation.getId() == Operation.OperationCode.SET_INSTALLATION.ordinal()) {
+                Log.d(TAG, "data here " + lData.getString("response"));
+            }
+        }catch (JSONException e){
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public void handleErrorForOperation(Response aResponse, Operation aOperation) {
+        Log.d(TAG,"$$$$$$$$$ handleErrorForOperation");
+        aOperation.setState(Operation.ERROR);
+        aOperation.setInformation(aResponse.getResponseDescription());
+        onError(aOperation);
+        getInstallationModel().clear();
+    }
 }

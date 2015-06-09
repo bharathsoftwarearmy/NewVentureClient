@@ -196,7 +196,7 @@ public class DonateBloodRestClient implements RestClient {
             // no need to set this to true.
             this.setShouldCache(Boolean.FALSE);
             // set the retry policy here.
-            setRetryPolicy(new DefaultRetryPolicy(30000,0,0));
+            setRetryPolicy(new DefaultRetryPolicy(30000,DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
             httpClientRequest = aClientRequest;
         }
 
