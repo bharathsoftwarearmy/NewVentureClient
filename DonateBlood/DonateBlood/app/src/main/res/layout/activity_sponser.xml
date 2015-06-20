@@ -10,7 +10,7 @@
         android:id="@+id/app_toolbar"
         layout="@layout/app_bar" />
 
-    <com.google.android.gms.ads.AdView
+  <!--  <com.google.android.gms.ads.AdView
         android:visibility="gone"
         android:layout_below="@id/app_toolbar"
         android:id="@+id/ad_view"
@@ -19,13 +19,13 @@
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         ads:adSize="BANNER"
-        ads:adUnitId="@string/banner_ad_unit_id" />
+        ads:adUnitId="@string/banner_ad_unit_id" />-->
 
 
 
     <ImageView
         android:id="@+id/imgVwSponser1"
-        android:layout_below="@id/ad_view"
+        android:layout_below="@id/app_toolbar"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:src="@mipmap/sponser_indian_red_cross_society"

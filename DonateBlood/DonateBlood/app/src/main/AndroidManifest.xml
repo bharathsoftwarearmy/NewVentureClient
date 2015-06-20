@@ -61,15 +61,58 @@
         <activity android:name=".activities.ContactActivity" android:screenOrientation="portrait" />
 
         <!--Include the AdActivity configChanges and theme. -->
-        <activity android:name="com.google.android.gms.ads.AdActivity"
+        <!--<activity android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
             android:theme="@android:style/Theme.Translucent" />
+-->
+
+        <!-- Settings for gcm using goolgle's cloud service-->
+
+        <!-- [START gcm_receiver] -->
+        <receiver
+            android:name="com.google.android.gms.gcm.GcmReceiver"
+            android:exported="true"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <category android:name="gcm.play.android.samples.com.gcmquickstart" />
+            </intent-filter>
+        </receiver>
+        <!-- [END gcm_receiver] -->
+
+
+        <!-- [START gcm_listener] -->
+        <service
+            android:name=".cloudmessaging.MyGcmListenerService"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </service>
+        <!-- [END gcm_listener] -->
+
+        <!-- [START instanceId_listener] -->
+        <service
+            android:name=".cloudmessaging.MyInstanceIDListenerService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.android.gms.iid.InstanceID"/>
+            </intent-filter>
+        </service>
+        <!-- [END instanceId_listener] -->
+
+        <service
+            android:name=".cloudmessaging.RegistrationIntentService"
+            android:exported="false">
+        </service>
 
 
 
-        <!-- Settings for push notification -->
 
-        <service android:name="com.parse.PushService" />
+
+        <!-- Settings for push notification using parse.com-->
+
+       <!-- <service android:name="com.parse.PushService" />
         <receiver android:name="com.parse.ParseBroadcastReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
@@ -90,12 +133,12 @@
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
                 <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
 
-                <!--
+                &lt;!&ndash;
                   IMPORTANT: Change "com.parse.starter" to match your app's package name.
-                -->
+                &ndash;&gt;
                 <category android:name="com.bijesh.donateblood" />
             </intent-filter>
-        </receiver>
+        </receiver>-->
 
 
 
