@@ -1,0 +1,53 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".EmailFragment">
+
+    <TextView android:text="@string/getEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="23dp"
+        android:gravity="center"
+        android:layout_marginTop="35dp"
+        android:id="@+id/txtViewFirstName"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        tools:text="test string available only at design time"
+        android:id="@+id/edtFirstName"
+        android:layout_below="@id/txtViewFirstName"
+        />
+
+
+    <LinearLayout
+        android:id="@+id/nextLayout"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:paddingBottom="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:id="@+id/txtNext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Next"
+            android:textSize="23dp"
+            android:layout_gravity="right"
+            android:gravity="right"
+            android:clickable="true"
+            />
+
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.bijesh.donateblood.DonateBloodApplication;
 import com.bijesh.donateblood.R;
+import com.bijesh.donateblood.fragments.FirstNameFragment;
 import com.bijesh.donateblood.models.ui.Donor;
 import com.bijesh.donateblood.models.ui.Validator;
 import com.bijesh.donateblood.storage.DonateSharedPrefs;
@@ -43,7 +44,7 @@ public class RegisterActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_donate);
+        setContentView(R.layout.activity_register);
 
 
         mToolBar = (Toolbar)findViewById(R.id.app_toolbar);
@@ -59,11 +60,18 @@ public class RegisterActivity extends ActionBarActivity {
             }
         });
 
-        initComponents();
+        initComps();
+
+//        initComponents();
 
     }
 
+    private void initComps(){
+        getSupportFragmentManager().beginTransaction().add(R.id.fragmentContainer,new FirstNameFragment(),"FirstName").commit();
+    }
 
+
+    @Deprecated
     private void initComponents(){
         edtTxtEmail = (EditText)findViewById(R.id.edtTxtEmail);
         edtTxtMobile = (EditText)findViewById(R.id.edtTxtMobile);

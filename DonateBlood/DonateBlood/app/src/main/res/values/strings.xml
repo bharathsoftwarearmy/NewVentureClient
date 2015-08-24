@@ -6,6 +6,10 @@
     <string name="banner_ad_unit_id">pub-9041872105010727</string>
 
 
+    <string name="first_name">Enter your name</string>
+    <string name="getEmail">Enter your email</string>
+
+
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
 
