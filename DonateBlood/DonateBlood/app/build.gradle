@@ -28,4 +28,5 @@ dependencies {
     compile 'com.google.android.gms:play-services-gcm:7.5.+'
     compile files('libs/volley.jar')
     compile files('libs/gson-2.2.4.jar')
+    compile 'com.github.markushi:circlebutton:1.1'
 }
