@@ -8,6 +8,7 @@
 
     <string name="first_name">Enter your name</string>
     <string name="getEmail">Enter your email</string>
+    <string name="getPhone">Enter your phone number</string>
 
 
     <string name="drawer_open">Open</string>

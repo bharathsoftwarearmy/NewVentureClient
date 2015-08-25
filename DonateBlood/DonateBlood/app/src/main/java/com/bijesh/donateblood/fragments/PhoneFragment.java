@@ -12,17 +12,17 @@ import android.widget.TextView;
 import com.bijesh.donateblood.R;
 
 /**
- * Created by Bijesh on 24-08-2015.
+ * Created by Bijesh on 25-08-2015.
  */
-public class EmailFragment extends Fragment {
+public class PhoneFragment extends Fragment {
 
-    public EmailFragment() {
+    public PhoneFragment() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_email, container, false);
+        View view = inflater.inflate(R.layout.fragment_phone, container, false);
         initComponents(view);
         return view;
     }
@@ -34,12 +34,11 @@ public class EmailFragment extends Fragment {
             public void onClick(View v) {
                 FragmentManager manager = getFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
-                transaction.replace(R.id.fragmentContainer, new PhoneFragment(), "PhoneFrag");
-                transaction.addToBackStack("PhoneFrag");
+                transaction.replace(R.id.fragmentContainer, new GenderFragment(), "GenderFrag");
+                transaction.addToBackStack("GenderFrag");
                 transaction.commit();
             }
         });
     }
 
 }
-
