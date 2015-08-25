@@ -39,7 +39,7 @@
                     android:layout_width="94dip"
                     android:layout_height="94dip"
 
-                    app:cb_color="#99CC00"
+                    app:cb_color="#00BCD4"
                     app:cb_pressedRingWidth="8dip" />
 
                 <TextView
@@ -69,7 +69,7 @@
                     android:layout_width="94dip"
                     android:layout_height="94dip"
 
-                    app:cb_color="#99CC00"
+                    app:cb_color="#00BCD4"
                     app:cb_pressedRingWidth="8dip" />
 
                 <TextView
