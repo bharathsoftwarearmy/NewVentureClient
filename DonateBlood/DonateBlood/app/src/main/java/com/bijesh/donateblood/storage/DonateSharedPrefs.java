@@ -6,16 +6,13 @@ import android.content.SharedPreferences;
 /**
  * Created by Bijesh on 23-05-2015.
  */
-public class DonateSharedPrefs {
+public class DonateSharedPrefs implements SharedPrefsConstants{
 
 
     private static final String TAG = DonateSharedPrefs.class.getCanonicalName();
     private static final String DONATE_BLOOD_PREFS = "DonateBloodPrefs";
 
-//     All keys goes here
-    public static final String IS_REGISTERED_KEY = "isRegistered";
-    public static final String IS_NAVIGATION_DRAWER_LEARNED = "isNavigationDrawerLearned";
-    public static final String HAS_ALREADY_NOTIFIED_DONORS_RECENTLY = "hasAlreadyNotifiedDonorsRecently";
+
 
     private static DonateSharedPrefs mInstance;
     private SharedPreferences mSharedPreferences;

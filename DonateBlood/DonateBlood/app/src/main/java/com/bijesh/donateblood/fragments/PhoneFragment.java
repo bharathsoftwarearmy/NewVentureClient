@@ -7,14 +7,18 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.bijesh.donateblood.R;
+import com.bijesh.donateblood.storage.DonateSharedPrefs;
 
 /**
  * Created by Bijesh on 25-08-2015.
  */
 public class PhoneFragment extends Fragment {
+
+    private EditText mEdtTxtPhone;
 
     public PhoneFragment() {
     }
@@ -29,6 +33,7 @@ public class PhoneFragment extends Fragment {
 
     private void initComponents(View view){
         TextView txtNext = (TextView) view.findViewById(R.id.txtNext);
+        mEdtTxtPhone = (EditText) view.findViewById(R.id.edtPhone);
         txtNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -37,6 +42,7 @@ public class PhoneFragment extends Fragment {
                 transaction.replace(R.id.fragmentContainer, new GenderFragment(), "GenderFrag");
                 transaction.addToBackStack("GenderFrag");
                 transaction.commit();
+                DonateSharedPrefs.getInstance(getActivity()).setStringData(DonateSharedPrefs.PHONE, mEdtTxtPhone.getText().toString());
             }
         });
     }

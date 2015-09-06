@@ -22,6 +22,7 @@
         android:layout_marginTop="35dp"
         tools:text="test string available only at design time"
         android:id="@+id/edtFirstName"
+        android:textColor="@color/accent"
         android:layout_below="@id/txtViewFirstName"
         />
 

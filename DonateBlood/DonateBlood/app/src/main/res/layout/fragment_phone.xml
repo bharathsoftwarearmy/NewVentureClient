@@ -21,7 +21,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
         tools:text="test string available only at design time"
-        android:id="@+id/edtFirstName"
+        android:id="@+id/edtPhone"
+        android:textColor="@color/accent"
+        android:inputType="number"
         android:layout_below="@id/txtViewFirstName"
         />
 
