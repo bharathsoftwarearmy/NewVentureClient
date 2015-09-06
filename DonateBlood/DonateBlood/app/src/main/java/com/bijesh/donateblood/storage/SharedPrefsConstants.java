@@ -13,6 +13,7 @@ public interface SharedPrefsConstants {
     String FIRST_NAME  = "FirstName";
     String EMAIL = "Email";
     String PHONE = "Phone";
+    String GENDER = "Gender";
 
 
 }

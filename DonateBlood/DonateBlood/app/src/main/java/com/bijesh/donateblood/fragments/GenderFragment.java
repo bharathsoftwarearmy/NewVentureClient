@@ -3,11 +3,16 @@ package com.bijesh.donateblood.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.bijesh.donateblood.R;
+import com.bijesh.donateblood.storage.DonateSharedPrefs;
 
 import at.markushi.ui.CircleButton;
 
@@ -41,7 +46,7 @@ public class GenderFragment extends Fragment {
         circleButtonMale.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               isMale = true;
+                isMale = true;
                 circleButtonMale.setImageResource(R.drawable.ic_action_tick);
                 circleButtonFemale.setImageResource(0);
             }
@@ -53,6 +58,22 @@ public class GenderFragment extends Fragment {
                 isMale = false;
                 circleButtonMale.setImageResource(0);
                 circleButtonFemale.setImageResource(R.drawable.ic_action_tick);
+            }
+        });
+
+        TextView txtNext = (TextView) view.findViewById(R.id.txtNext);
+
+        txtNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager manager = getFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+                transaction.replace(R.id.fragmentContainer, new BloodGroupFragment(), "BloodGroupFrag");
+                transaction.addToBackStack("BloodGroupFrag");
+                transaction.commit();
+
+                String gender = isMale ? "Male": "Female";
+                DonateSharedPrefs.getInstance(getActivity()).setStringData(DonateSharedPrefs.GENDER, gender);
             }
         });
 
