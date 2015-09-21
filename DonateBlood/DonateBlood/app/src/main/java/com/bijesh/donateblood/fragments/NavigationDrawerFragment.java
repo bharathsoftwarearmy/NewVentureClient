@@ -128,10 +128,10 @@ public class NavigationDrawerFragment extends Fragment implements NavigationDraw
                 }
                 break;
             case 1:
-                if(ValidationUtils.isUserAlreadyRegistered(getActivity())) {
+                if(true) { // TODO: removed for testing purpose add this code after testing // ValidationUtils.isUserAlreadyRegistered(getActivity()) //
                     long currentTime = System.currentTimeMillis();
                     long previousRequestTime = DonateSharedPrefs.getInstance(getActivity()).getLongData(DonateSharedPrefs.HAS_ALREADY_NOTIFIED_DONORS_RECENTLY, 0);
-                    if(ValidationUtils.hasAlreadySentRequest(currentTime,previousRequestTime)) {
+                    if(true) { // TODO: removed for testing purpose add this code after testing // ValidationUtils.hasAlreadySentRequest(currentTime,previousRequestTime)
                         startActivity(new Intent(getActivity(), NeedActivity.class));
                     }else{
                         Toast.makeText(getActivity(),"You have already sent request",Toast.LENGTH_LONG).show();

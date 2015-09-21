@@ -1,0 +1,25 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+
+
+    <include
+        android:id="@+id/app_toolbar"
+        layout="@layout/app_bar" />
+
+
+    <FrameLayout
+        android:id="@+id/fragmentContainer"
+        android:layout_below="@id/app_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+
+
+
+</RelativeLayout>

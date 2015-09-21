@@ -12,6 +12,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.bijesh.donateblood.R;
+import com.bijesh.donateblood.fragments.FirstNameFragment;
 import com.bijesh.donateblood.models.ui.RequestDonor;
 import com.bijesh.donateblood.models.ui.Validator;
 import com.bijesh.donateblood.storage.DonateSharedPrefs;
@@ -41,7 +42,7 @@ public class NeedActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_need);
+        setContentView(R.layout.activity_need_new);
 
         init();
 
@@ -49,7 +50,8 @@ public class NeedActivity extends ActionBarActivity {
 
     private void init(){
         initToolBar();
-        initComponents();
+//        initComponents();
+        initComps();
     }
 
     private void initToolBar(){
@@ -67,6 +69,11 @@ public class NeedActivity extends ActionBarActivity {
         });
     }
 
+    private void initComps(){
+        getSupportFragmentManager().beginTransaction().add(R.id.fragmentContainer,new FirstNameFragment(),"FirstName").commit();
+    }
+
+    @Deprecated
     private void initComponents(){
         mBtnRequest = (Button) findViewById(R.id.btnRegister);
 
