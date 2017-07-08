@@ -10,6 +10,7 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.FrameLayout;
@@ -22,14 +23,7 @@ import com.bijesh.donateblood.cloudmessaging.RegistrationIntentService;
 import com.bijesh.donateblood.fragments.HomeFragment;
 import com.bijesh.donateblood.fragments.NavigationDrawerFragment;
 import com.bijesh.donateblood.utils.cloud.PushServiceUtils;
-import com.parse.ParseException;
-import com.parse.ParseInstallation;
-import com.parse.ParseObject;
-import com.parse.ParsePush;
-import com.parse.ParseQuery;
-import com.parse.ParseUser;
-import com.parse.PushService;
-import com.parse.SaveCallback;
+
 
 import org.json.JSONObject;
 
@@ -38,7 +32,7 @@ import java.util.List;
 /**
  * Created by bijesh on 5/13/2015.
  */
-public class HomeActivity extends ActionBarActivity {
+public class HomeActivity extends AppCompatActivity {
 
 
     private static final String TAG = HomeActivity.class.getCanonicalName();
@@ -98,31 +92,10 @@ public class HomeActivity extends ActionBarActivity {
 
 //        sendPush();
 
-        initGCM();
-
-
+//        initGCM();
 
     }
 
-    private void sendPush(){
-        ParsePush push = new ParsePush();
-        push.setChannel("Donate");
-        push.setMessage("The Giants just scored! It's now 2-2 against the Mets.");
-        push.sendInBackground();
-
-    }
-
-    private void sendPush1(){
-        // Create our Installation query
-        ParseQuery pushQuery = ParseInstallation.getQuery();
-        pushQuery.whereEqualTo("injuryReports", true);
-
-// Send push notification to query
-        ParsePush push = new ParsePush();
-        push.setQuery(pushQuery); // Set our Installation query
-        push.setMessage("Willie Hayes injured by own pop fly.");
-        push.sendInBackground();
-    }
 
     private void showPushMessage(){
         try{

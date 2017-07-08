@@ -78,4 +78,19 @@ public class GenderFragment extends Fragment {
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        String gender = DonateSharedPrefs.getInstance(getActivity()).getStringData(DonateSharedPrefs.GENDER,"Male");
+        if(gender != null){
+            if(gender.equals("Male")){
+                circleButtonMale.setImageResource(R.drawable.ic_action_tick);
+                circleButtonFemale.setImageResource(0);
+            }else{
+                circleButtonMale.setImageResource(0);
+                circleButtonFemale.setImageResource(R.drawable.ic_action_tick);
+            }
+        }
+    }
+
 }

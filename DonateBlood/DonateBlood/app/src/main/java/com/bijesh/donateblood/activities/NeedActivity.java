@@ -2,6 +2,7 @@ package com.bijesh.donateblood.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -19,14 +20,12 @@ import com.bijesh.donateblood.storage.DonateSharedPrefs;
 import com.bijesh.donateblood.utils.ValidationUtils;
 import com.bijesh.donateblood.utils.cloud.PushServiceUtils;
 import com.bijesh.donateblood.utils.phone.PhoneUtils;
-import com.parse.ParseException;
-import com.parse.ParseObject;
-import com.parse.SaveCallback;
+
 
 /**
  * Created by Bijesh on 23-05-2015.
  */
-public class NeedActivity extends ActionBarActivity {
+public class NeedActivity extends AppCompatActivity {
 
     private static final String TAG = NeedActivity.class.getCanonicalName();
 
@@ -83,25 +82,7 @@ public class NeedActivity extends ActionBarActivity {
                 RequestDonor requestDonor = populateRequestDonor();
                 Validator validator = ValidationUtils.validateRequestDonorScreen(requestDonor);
                 if(validator.isFlag()) {
-                    PushServiceUtils.sendPush(requestDonor);
-                    final ParseObject regObject = new ParseObject("RequestDonor");
-                    regObject.put("email", requestDonor.getEmail());
-                    regObject.put("phone", requestDonor.getPhone());
-                    regObject.put("name", requestDonor.getName());
-                    regObject.put("bloodGroup", requestDonor.getBloodGroup());
-                    regObject.put("description", requestDonor.getDescription());
-                    regObject.put("city", requestDonor.getCity());
-                    regObject.put("country", requestDonor.getCountry());
-                    regObject.saveInBackground(new SaveCallback() {
-                        @Override
-                        public void done(ParseException e) {
-                            Toast.makeText(NeedActivity.this, "Request sent to all donors!!!", Toast.LENGTH_LONG).show();
-                            Log.d(TAG, "id is " + regObject.getObjectId());
-                            DonateSharedPrefs.getInstance(NeedActivity.this).setLongData(DonateSharedPrefs.HAS_ALREADY_NOTIFIED_DONORS_RECENTLY,
-                                    System.currentTimeMillis());
 
-                        }
-                    });
                 }else{
                     Toast.makeText(NeedActivity.this,validator.getMessage(),Toast.LENGTH_LONG).show();
                     return;

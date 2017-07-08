@@ -49,5 +49,12 @@ public class FirstNameFragment extends Fragment {
         });
     }
 
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        String firstName = DonateSharedPrefs.getInstance(getActivity()).getStringData(DonateSharedPrefs.FIRST_NAME,null);
+        if(firstName != null){
+            mEdtTxtFirstName.setText(firstName);
+        }
+    }
 }

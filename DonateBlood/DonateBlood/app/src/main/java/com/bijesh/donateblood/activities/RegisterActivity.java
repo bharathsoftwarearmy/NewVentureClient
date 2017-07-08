@@ -23,14 +23,12 @@ import com.bijesh.donateblood.models.ui.Validator;
 import com.bijesh.donateblood.storage.DonateSharedPrefs;
 import com.bijesh.donateblood.utils.ValidationUtils;
 import com.bijesh.donateblood.utils.phone.PhoneUtils;
-import com.parse.ParseException;
-import com.parse.ParseObject;
-import com.parse.SaveCallback;
+
 
 /**
  * Created by bijesh on 5/21/2015.
  */
-public class RegisterActivity extends ActionBarActivity {
+public class RegisterActivity extends BaseActivity {
 
     private static final String TAG = RegisterActivity.class.getCanonicalName();
     private Toolbar mToolBar;
@@ -67,7 +65,8 @@ public class RegisterActivity extends ActionBarActivity {
     }
 
     private void initComps(){
-        getSupportFragmentManager().beginTransaction().add(R.id.fragmentContainer,new FirstNameFragment(),"FirstName").commit();
+        getSupportFragmentManager().beginTransaction().
+                add(R.id.fragmentContainer,new FirstNameFragment(),"FirstName").commit();
     }
 
 
@@ -105,21 +104,7 @@ public class RegisterActivity extends ActionBarActivity {
                 Donor donor = populateDonor();
                 Validator validator = ValidationUtils.validateRegisterScreen(donor);
                   if(validator.isFlag()){
-                      final ParseObject regObject = new ParseObject("Donor");
-                      regObject.put("email",donor.getEmail());
-                      regObject.put("number",donor.getPhone());
-                      regObject.put("name",donor.getName());
-                      regObject.put("gender",donor.getGender());
-                      regObject.put("above18","yes");
-                      regObject.put("bloodGroup",donor.getBloodGroup());
-                      regObject.saveInBackground(new SaveCallback() {
-                          @Override
-                          public void done(ParseException e) {
-                              Toast.makeText(RegisterActivity.this,"You have registered successfully",Toast.LENGTH_LONG).show();
-                              Log.d(TAG, "id is " + regObject.getObjectId());
-                              DonateSharedPrefs.getInstance(DonateBloodApplication.getInstance()).setStringData(DonateSharedPrefs.IS_REGISTERED_KEY,regObject.getObjectId());
-                          }
-                      });
+
                   }else{
                       Toast.makeText(RegisterActivity.this,validator.getMessage(),Toast.LENGTH_LONG).show();
                       return;
@@ -152,6 +137,13 @@ public class RegisterActivity extends ActionBarActivity {
         return donor;
     }
 
-
-
+    @Override
+    public void onBackPressed() {
+        if (getFragmentManager().getBackStackEntryCount() > 0) {
+            getFragmentManager().popBackStack();
+        } else {
+            super.onBackPressed();
+            clearPreferences();
+        }
+    }
 }

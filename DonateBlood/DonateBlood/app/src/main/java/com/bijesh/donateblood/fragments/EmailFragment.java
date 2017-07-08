@@ -48,5 +48,14 @@ public class EmailFragment extends Fragment {
         });
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        String email = DonateSharedPrefs.getInstance(getActivity()).getStringData(DonateSharedPrefs.EMAIL,null);
+        if(email != null){
+            mEdtTxtEmail.setText(email);
+        }
+    }
+
 }
 

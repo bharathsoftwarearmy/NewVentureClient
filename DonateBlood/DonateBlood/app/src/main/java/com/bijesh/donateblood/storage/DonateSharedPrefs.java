@@ -30,6 +30,10 @@ public class DonateSharedPrefs implements SharedPrefsConstants{
         return mInstance;
     }
 
+    public SharedPreferences getSharedPreferences(){
+        return mSharedPreferences;
+    }
+
     public void setStringData(String key, String value) {
         mEditor.putString(key, value);
         mEditor.commit();

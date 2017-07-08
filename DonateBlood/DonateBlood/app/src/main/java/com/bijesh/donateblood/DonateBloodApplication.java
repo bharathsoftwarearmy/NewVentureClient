@@ -10,13 +10,6 @@ import com.bijesh.donateblood.activities.HomeActivity;
 import com.bijesh.donateblood.controllers.RestResponseHandlerThread;
 import com.bijesh.donateblood.httpwrapper.RestClientFactory;
 import com.bijesh.donateblood.httpwrapper.impl.DonateBloodRestClient;
-import com.parse.Parse;
-import com.parse.ParseACL;
-import com.parse.ParseException;
-import com.parse.ParseInstallation;
-import com.parse.ParsePush;
-import com.parse.PushService;
-import com.parse.SaveCallback;
 
 /**
  * Created by bijesh on 5/21/2015.
@@ -76,14 +69,7 @@ public class DonateBloodApplication extends Application {
         handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                    ParseInstallation.getCurrentInstallation().put("UniqueId", androidId);
-                                    ParseInstallation.getCurrentInstallation().saveInBackground(new SaveCallback() {
-                                        @Override
-                                        public void done(ParseException e) {
-                                            // Saved!
-                                            Log.d(TAG, "Parse Installation id saved on cloud");
-                                        }
-                                    });
+
                                 }
                             }, 10000
         );
@@ -92,18 +78,7 @@ public class DonateBloodApplication extends Application {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                ParsePush.subscribeInBackground("Donate", new SaveCallback() {
-                    @Override
-                    public void done(ParseException e) {
-                        if (e == null) {
-                            Log.d("com.parse.push", "successfully subscribed to the broadcast channel.");
-                        } else {
-                            Log.e("com.parse.push", "failed to subscribe for push", e);
-                            e.printStackTrace();
-                            registerPushService();
-                        }
-                    }
-                });
+
             }
         }, 20000);
     }

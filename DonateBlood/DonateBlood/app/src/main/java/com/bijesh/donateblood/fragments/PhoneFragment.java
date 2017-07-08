@@ -47,4 +47,13 @@ public class PhoneFragment extends Fragment {
         });
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        String phone = DonateSharedPrefs.getInstance(getActivity()).getStringData(DonateSharedPrefs.PHONE,null);
+        if(phone != null){
+            mEdtTxtPhone.setText(phone);
+        }
+    }
+
 }
