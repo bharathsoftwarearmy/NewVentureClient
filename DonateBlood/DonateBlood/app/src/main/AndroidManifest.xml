@@ -18,15 +18,8 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
-    <!--
-      IMPORTANT: Change "com.parse.starter.permission.C2D_MESSAGE" in the lines below
-      to match your app's package name + ".permission.C2D_MESSAGE".
-    -->
-    <permission android:protectionLevel="signature"
-        android:name="com.bijesh.donateblood.permission.C2D_MESSAGE" />
-    <uses-permission android:name="com.bijesh.donateblood.permission.C2D_MESSAGE" />
+
 
 
 
@@ -39,8 +32,6 @@
         android:theme="@style/AppTheme"
         >
 
-        <!--This meta-data tag is required to use Google Play Services.-->
-        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
 
         <activity
             android:name=".activities.HomeActivity"
@@ -100,14 +91,6 @@
             </intent-filter>
         </service>
         <!-- [END instanceId_listener] -->
-
-        <service
-            android:name=".cloudmessaging.RegistrationIntentService"
-            android:exported="false">
-        </service>
-
-
-
 
 
         <!-- Settings for push notification using parse.com-->

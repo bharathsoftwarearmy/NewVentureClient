@@ -60,7 +60,7 @@ public class InstallationController extends BaseController {
         if(mOperationsModel.addOperation(mOperationFactory.createOperation(SET_INSTALLATION_DATA,Operation.CREATED))){
             if (NetworkUtil.isNetworkAvailable(context)) {
                 DonateBloodHttpRequest aHttpRequest = (DonateBloodHttpRequest)createRequest();
-                String url = "http://192.168.56.1:8080/DonateBloodWeb/Installation";//"http://10.5.50.4:8080/DonateBloodWeb/Installation";
+                String url = "http://49.206.121.105:8081/DonateBloodWeb/Installation";//"http://10.5.50.4:8080/DonateBloodWeb/Installation";
                 aHttpRequest.setUrl(url);
                 Log.d(TAG, "$$$ url "+url);
                 HashMap<String, String> map = (HashMap<String, String>)aHttpRequest.getHeaders();

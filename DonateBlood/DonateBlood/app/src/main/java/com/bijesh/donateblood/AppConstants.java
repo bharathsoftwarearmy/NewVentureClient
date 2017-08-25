@@ -6,4 +6,9 @@ package com.bijesh.donateblood;
 public interface AppConstants {
     public static final int REQUEST_SUCCESS = 2000;
     public static final String NETWORK_ERROR = "NETWORK_ERROR";
+
+
+
+//    UI related constants
+    int  REGISTERATION_FRAGMENT_POSITION = 0;
 }

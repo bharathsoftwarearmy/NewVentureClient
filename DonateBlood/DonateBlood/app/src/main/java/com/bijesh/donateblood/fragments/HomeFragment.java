@@ -2,6 +2,8 @@ package com.bijesh.donateblood.fragments;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
@@ -24,6 +26,8 @@ import com.bijesh.donateblood.storage.singleton.PreviousRequest;
 import com.bijesh.donateblood.utils.calendar.CalendarUtil;
 import com.bijesh.donateblood.utils.calendar.TimeFormatUtil;
 import com.bijesh.donateblood.utils.phone.PhoneUtils;
+import com.bijesh.donateblood.utils.webservice.WebServiceUtils;
+import 	android.support.design.widget.Snackbar;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -37,6 +41,7 @@ public class HomeFragment extends Fragment implements UIInterface, Observer {
     private TextView mTxtViewStatus;
     private TextView mTxtViewMessages;
     private Handler mHandler;
+    private CoordinatorLayout mCoordinatorLayout;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,6 +58,7 @@ public class HomeFragment extends Fragment implements UIInterface, Observer {
     private void init(View view){
         mTxtViewStatus = (TextView)view.findViewById(R.id.txtViewQuote);
         mTxtViewMessages = (TextView) view.findViewById(R.id.txtViewPushRequests);
+        mCoordinatorLayout = (CoordinatorLayout) view.findViewById(R.id.corLayoutHome);
         mTxtViewMessages.setMovementMethod(new ScrollingMovementMethod());
 
 
@@ -107,8 +113,15 @@ public class HomeFragment extends Fragment implements UIInterface, Observer {
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Toast.makeText(getActivity(),"User already exists ",Toast.LENGTH_LONG).show();
                     DonateBloodFileStorage.setStringData(getActivity(), FileConstants.IS_USER_EXISTS,"true");
+                    final Snackbar snackbar = Snackbar.make(mCoordinatorLayout,WebServiceUtils.getErrorMessage(WebServiceUtils.Controller.INSTALLATION),
+                            Snackbar.LENGTH_INDEFINITE);
+                    snackbar.setAction("Close", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    snackbar.dismiss();
+                                }
+                            }).show();
                     Log.d(TAG,"$$$ user already exists "+DonateBloodFileStorage.getStringData(getActivity(),FileConstants.IS_USER_EXISTS));
                 }
             });

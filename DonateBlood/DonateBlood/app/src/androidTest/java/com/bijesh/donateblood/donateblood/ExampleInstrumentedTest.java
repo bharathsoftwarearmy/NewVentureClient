@@ -4,6 +4,8 @@ import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
+import com.bijesh.donateblood.utils.phone.PhoneUtils;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -23,4 +25,13 @@ public class ExampleInstrumentedTest {
 
         assertEquals("com.bijesh.donateblood.donateblood", appContext.getPackageName());
     }
+
+
+    @Test
+    public void testPhoneUtils() throws Exception{
+        Context appContext = InstrumentationRegistry.getTargetContext();
+        String email = PhoneUtils.getPrimaryEmailAddress(appContext);
+        assertNotNull(email);
+    }
+
 }

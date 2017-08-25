@@ -19,36 +19,37 @@ public class PhoneUtils {
 
 
     public static String getUniqueId(Context context){
-        String retString = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+//        String retString = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+        String retString = getPrimaryEmailAddress(context);
         Log.d(TAG,"retString "+retString);
         return retString;
     }
 
 //    public static String getPrimaryMobileNumber(Context context) {
 //        String retNumber = null;
-////        TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-////        retNumber = telephonyManager.getLine1Number();
-////        Log.d(TAG,"Primary number "+retNumber);
+//        TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+//        retNumber = telephonyManager.getLine1Number();
+//        Log.d(TAG,"Primary number "+retNumber);
 //        if (retNumber == null)
 //            return "";
 //        else
 //            return retNumber;
 //    }
 //
-//    public static String getPrimaryEmailAddress(Context context){
-//        String retEmail = null;
-//        Pattern emailPattern = Patterns.EMAIL_ADDRESS; // API level 8+
-//        Account[] accounts = AccountManager.get(context).getAccounts();
-//        for (Account account : accounts) {
-//            if (emailPattern.matcher(account.name).matches()) {
-//                retEmail = account.name;
-//                Log.d(TAG,"email "+retEmail);
-//                if(retEmail != null)
-//                    break;
-//            }
-//        }
-//        return retEmail;
-//    }
+    public static String getPrimaryEmailAddress(Context context){
+        String retEmail = null;
+        Pattern emailPattern = Patterns.EMAIL_ADDRESS; // API level 8+
+        Account[] accounts = AccountManager.get(context).getAccounts();
+        for (Account account : accounts) {
+            if (emailPattern.matcher(account.name).matches()) {
+                retEmail = account.name;
+                Log.d(TAG,"email "+retEmail);
+                if(retEmail != null)
+                    break;
+            }
+        }
+        return retEmail;
+    }
 
 
 

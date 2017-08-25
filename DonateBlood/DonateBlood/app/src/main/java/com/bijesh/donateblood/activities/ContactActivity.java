@@ -1,7 +1,7 @@
 package com.bijesh.donateblood.activities;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -11,7 +11,7 @@ import com.bijesh.donateblood.R;
 /**
  * Created by Bijesh on 24-05-2015.
  */
-public class ContactActivity extends ActionBarActivity {
+public class ContactActivity extends AppCompatActivity {
 
     private static final String TAG = ContactActivity.class.getCanonicalName();
     private Toolbar mToolBar;

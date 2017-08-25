@@ -72,7 +72,7 @@ public class GenderFragment extends Fragment {
                 transaction.commit();
 
                 String gender = isMale ? "Male": "Female";
-                DonateSharedPrefs.getInstance(getActivity()).setStringData(DonateSharedPrefs.GENDER, gender);
+                DonateSharedPrefs.getInstance(getContext()).setStringData(DonateSharedPrefs.GENDER, gender);
             }
         });
 
@@ -81,7 +81,7 @@ public class GenderFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        String gender = DonateSharedPrefs.getInstance(getActivity()).getStringData(DonateSharedPrefs.GENDER,"Male");
+        String gender = DonateSharedPrefs.getInstance(getContext()).getStringData(DonateSharedPrefs.GENDER,"Male");
         if(gender != null){
             if(gender.equals("Male")){
                 circleButtonMale.setImageResource(R.drawable.ic_action_tick);

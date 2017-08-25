@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 
+import com.bijesh.donateblood.AppConstants;
 import com.bijesh.donateblood.R;
 import com.bijesh.donateblood.activities.ContactActivity;
 import com.bijesh.donateblood.activities.RegisterActivity;
@@ -31,7 +32,8 @@ import java.util.Arrays;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NavigationDrawerFragment extends Fragment implements NavigationDrawerAdapter.NavigationDrawerClickListener{
+public class NavigationDrawerFragment extends BaseFragment implements NavigationDrawerAdapter.NavigationDrawerClickListener,
+        AppConstants{
 
 
     private ActionBarDrawerToggle mActionBarDrawerToggle;
@@ -50,7 +52,7 @@ public class NavigationDrawerFragment extends Fragment implements NavigationDraw
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mUserLearnedDrawer = Boolean.valueOf(DonateSharedPrefs.getInstance(getActivity()).getStringData(DonateSharedPrefs.IS_NAVIGATION_DRAWER_LEARNED,"false"));
+        mUserLearnedDrawer = Boolean.valueOf(DonateSharedPrefs.getInstance(getContext()).getStringData(DonateSharedPrefs.IS_NAVIGATION_DRAWER_LEARNED,"false"));
         if(savedInstanceState != null){
             mFromSavedInstanceState = true;
         }
@@ -62,13 +64,13 @@ public class NavigationDrawerFragment extends Fragment implements NavigationDraw
         // Inflate the layout for this fragment
         View layout = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
         mRecyclerView = (RecyclerView) layout.findViewById(R.id.drawer_recycle_view);
-        mNavigationDrawerAdapter = new NavigationDrawerAdapter(getActivity(), Arrays.asList(
+        mNavigationDrawerAdapter = new NavigationDrawerAdapter(getContext(), Arrays.asList(
                 new NavigationDrawerOptions("Register"), new NavigationDrawerOptions("Request to all donors"),
                 new NavigationDrawerOptions("Our Sponsors"),
                 new NavigationDrawerOptions("Share this app"),
                 new NavigationDrawerOptions("Contact us")));
         mRecyclerView.setAdapter(mNavigationDrawerAdapter);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mNavigationDrawerAdapter.setClickListener(this);
 
         return layout;
@@ -84,7 +86,7 @@ public class NavigationDrawerFragment extends Fragment implements NavigationDraw
                 super.onDrawerOpened(drawerView);
                 if(!mUserLearnedDrawer){
                     mUserLearnedDrawer = true;
-                    DonateSharedPrefs.getInstance(getActivity()).setStringData(DonateSharedPrefs.IS_NAVIGATION_DRAWER_LEARNED,"true");
+                    DonateSharedPrefs.getInstance(getContext()).setStringData(DonateSharedPrefs.IS_NAVIGATION_DRAWER_LEARNED,"true");
                 }
                 getActivity().invalidateOptionsMenu();
             }
@@ -118,6 +120,19 @@ public class NavigationDrawerFragment extends Fragment implements NavigationDraw
 
     @Override
     public void onNavigationItemClick(View view, int position) {
+        switch (position){
+            case REGISTERATION_FRAGMENT_POSITION:
+                replaceFragment(new RegisterFragment(),"RegisterFragment");
+        }
+    }
+
+    /**
+     * Moving all activities to fragments, so commenting the below methods and then creating a new one
+     * @param view
+     * @param position
+     */
+    /*@Override
+    public void onNavigationItemClick(View view, int position) {
 //        Toast.makeText(getActivity(),"Clicked on position "+position,Toast.LENGTH_LONG).show();
         switch (position){
             case 0:
@@ -150,7 +165,8 @@ public class NavigationDrawerFragment extends Fragment implements NavigationDraw
                 startActivity(new Intent(getActivity(), ContactActivity.class));
                 break;
         }
-    }
+    }*/
+
 
 
 

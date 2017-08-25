@@ -1,7 +1,6 @@
 package com.bijesh.donateblood.activities;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -16,10 +15,7 @@ import com.bijesh.donateblood.R;
 import com.bijesh.donateblood.fragments.FirstNameFragment;
 import com.bijesh.donateblood.models.ui.RequestDonor;
 import com.bijesh.donateblood.models.ui.Validator;
-import com.bijesh.donateblood.storage.DonateSharedPrefs;
 import com.bijesh.donateblood.utils.ValidationUtils;
-import com.bijesh.donateblood.utils.cloud.PushServiceUtils;
-import com.bijesh.donateblood.utils.phone.PhoneUtils;
 
 
 /**
