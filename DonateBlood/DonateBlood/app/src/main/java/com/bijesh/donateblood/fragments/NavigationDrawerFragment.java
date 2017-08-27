@@ -32,6 +32,7 @@ import java.util.Arrays;
 /**
  * A simple {@link Fragment} subclass.
  */
+@Deprecated
 public class NavigationDrawerFragment extends BaseFragment implements NavigationDrawerAdapter.NavigationDrawerClickListener,
         AppConstants{
 
@@ -122,8 +123,23 @@ public class NavigationDrawerFragment extends BaseFragment implements Navigation
     public void onNavigationItemClick(View view, int position) {
         switch (position){
             case REGISTERATION_FRAGMENT_POSITION:
-                replaceFragment(new RegisterFragment(),"RegisterFragment");
+                onRegistration();
+                break;
+            case REQUEST_FOR_DONOR:
+                onRequestDonor();
+                break;
         }
+    }
+
+
+    private void onRegistration(){
+        replaceFragment(new RegisterFragment(), "RegisterFragment");
+        mDrawerLayout.closeDrawers();
+    }
+
+
+    private void onRequestDonor(){
+
     }
 
     /**

@@ -19,6 +19,7 @@ import java.util.List;
 /**
  * Created by bijesh on 5/20/2015.
  */
+@Deprecated
 public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDrawerAdapter.NavigationDrawerViewHolder>{
 
 

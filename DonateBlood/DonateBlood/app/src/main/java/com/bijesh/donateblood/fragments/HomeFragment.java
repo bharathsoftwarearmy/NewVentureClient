@@ -110,22 +110,28 @@ public class HomeFragment extends Fragment implements UIInterface, Observer {
         if (opr == null)
             return;
         if (opr.getId() == Operation.OperationCode.SET_INSTALLATION.ordinal()) {
+            showError();
+        }
+    }
+
+
+    private void showError(){
+        if(getActivity() != null) {
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    DonateBloodFileStorage.setStringData(getActivity(), FileConstants.IS_USER_EXISTS,"true");
-                    final Snackbar snackbar = Snackbar.make(mCoordinatorLayout,WebServiceUtils.getErrorMessage(WebServiceUtils.Controller.INSTALLATION),
+                    DonateBloodFileStorage.setStringData(getActivity(), FileConstants.IS_USER_EXISTS, "true");
+                    final Snackbar snackbar = Snackbar.make(mCoordinatorLayout, WebServiceUtils.getErrorMessage(WebServiceUtils.Controller.INSTALLATION),
                             Snackbar.LENGTH_INDEFINITE);
                     snackbar.setAction("Close", new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    snackbar.dismiss();
-                                }
-                            }).show();
-                    Log.d(TAG,"$$$ user already exists "+DonateBloodFileStorage.getStringData(getActivity(),FileConstants.IS_USER_EXISTS));
+                        @Override
+                        public void onClick(View view) {
+                            snackbar.dismiss();
+                        }
+                    }).show();
+                    Log.d(TAG, "$$$ user already exists " + DonateBloodFileStorage.getStringData(getActivity(), FileConstants.IS_USER_EXISTS));
                 }
             });
-
         }
     }
 

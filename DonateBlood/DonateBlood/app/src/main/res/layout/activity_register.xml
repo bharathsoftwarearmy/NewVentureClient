@@ -7,9 +7,9 @@
 
 
 
-    <include
+   <!-- <include
         android:id="@+id/app_toolbar"
-        layout="@layout/app_bar" />
+        layout="@layout/app_bar" />-->
 
 
     <FrameLayout

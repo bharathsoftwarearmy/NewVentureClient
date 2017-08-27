@@ -11,4 +11,5 @@ public interface AppConstants {
 
 //    UI related constants
     int  REGISTERATION_FRAGMENT_POSITION = 0;
+    int REQUEST_FOR_DONOR = 1;
 }
