@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mainContainer"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
 
@@ -12,20 +13,22 @@
         android:id="@+id/app_toolbar"
         layout="@layout/app_bar" />
 
-
-    <android.support.v4.widget.DrawerLayout
-
-        android:id="@+id/drawer_layout"
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/mainCoordinator"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <android.support.v4.widget.DrawerLayout
 
-        <FrameLayout
-            android:id="@+id/home_container"
+            android:id="@+id/drawer_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
 
+            <FrameLayout
+                android:id="@+id/home_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
 
 
@@ -33,30 +36,35 @@
 
 
 
-        </FrameLayout>
 
-       <!-- <fragment
-            android:id="@+id/fragment_nav_drawer"
-            android:layout_width="280dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            app:layout="@layout/fragment_navigation_drawer"
-            tools:layout="@layout/fragment_navigation_drawer"
-            android:name="com.bijesh.donateblood.fragments.NavigationDrawerFragment"
 
-            />-->
+            </FrameLayout>
 
-        <ListView
-            android:id="@+id/left_drawer"
-            android:layout_width="240dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:background="#FFFFFF"
-            android:choiceMode="singleChoice"
-            android:divider="@android:color/darker_gray"
-            android:dividerHeight="1dp" />
+            <!-- <fragment
+                 android:id="@+id/fragment_nav_drawer"
+                 android:layout_width="280dp"
+                 android:layout_height="match_parent"
+                 android:layout_gravity="start"
+                 app:layout="@layout/fragment_navigation_drawer"
+                 tools:layout="@layout/fragment_navigation_drawer"
+                 android:name="com.bijesh.donateblood.fragments.NavigationDrawerFragment"
 
-    </android.support.v4.widget.DrawerLayout>
+                 />-->
+
+            <ListView
+                android:id="@+id/left_drawer"
+                android:layout_width="240dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:background="#FFFFFF"
+                android:choiceMode="singleChoice"
+                android:divider="@android:color/darker_gray"
+                android:dividerHeight="1dp" />
+
+        </android.support.v4.widget.DrawerLayout>
+    </android.support.design.widget.CoordinatorLayout>
+
+
 
 
 

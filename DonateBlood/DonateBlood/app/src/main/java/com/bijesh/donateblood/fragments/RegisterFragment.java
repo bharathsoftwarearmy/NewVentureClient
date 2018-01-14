@@ -35,4 +35,5 @@ public class RegisterFragment extends BaseFragment {
                 add(R.id.fragmentContainer,new FirstNameFragment(),"FirstName").commit();
     }
 
+
 }

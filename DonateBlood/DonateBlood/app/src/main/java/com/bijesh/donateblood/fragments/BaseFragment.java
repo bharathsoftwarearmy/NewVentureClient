@@ -10,12 +10,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bijesh.donateblood.R;
+import com.google.firebase.database.DatabaseReference;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class BaseFragment extends Fragment {
+
+    protected DatabaseReference mDatabase;
 
 
     public BaseFragment() {

@@ -33,6 +33,8 @@
         >
 
 
+
+
         <activity
             android:name=".activities.HomeActivity"
             android:label="@string/app_name"
@@ -60,7 +62,7 @@
         <!-- Settings for gcm using goolgle's cloud service-->
 
         <!-- [START gcm_receiver] -->
-        <receiver
+        <!--<receiver
             android:name="com.google.android.gms.gcm.GcmReceiver"
             android:exported="true"
             android:permission="com.google.android.c2dm.permission.SEND" >
@@ -68,28 +70,28 @@
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
                 <category android:name="gcm.play.android.samples.com.gcmquickstart" />
             </intent-filter>
-        </receiver>
+        </receiver>-->
         <!-- [END gcm_receiver] -->
 
 
         <!-- [START gcm_listener] -->
-        <service
+        <!--<service
             android:name=".cloudmessaging.MyGcmListenerService"
             android:exported="false" >
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
             </intent-filter>
-        </service>
+        </service>-->
         <!-- [END gcm_listener] -->
 
         <!-- [START instanceId_listener] -->
-        <service
+       <!-- <service
             android:name=".cloudmessaging.MyInstanceIDListenerService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.android.gms.iid.InstanceID"/>
             </intent-filter>
-        </service>
+        </service>-->
         <!-- [END instanceId_listener] -->
 
 

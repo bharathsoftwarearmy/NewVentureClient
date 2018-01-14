@@ -1,19 +1,27 @@
 package com.bijesh.donateblood.fragments;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bijesh.donateblood.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 import at.markushi.ui.CircleButton;
 
 /**
  * Created by Bijesh on 06-09-2015.
  */
-public class BloodGroupFragment extends Fragment implements View.OnClickListener{
+public class BloodGroupFragment extends BaseFragment implements View.OnClickListener{
 
 
     private CircleButton mCBAPositive,mCBANegative,mCBBPositive,mCBBNegative;
@@ -21,6 +29,7 @@ public class BloodGroupFragment extends Fragment implements View.OnClickListener
     private CircleButton mCBA1Positive,mCBA1Negative,mCBA1BPositive,mCBA1BNegative;
 
     private CircleButton[] mCircleButtonViews;
+    private TextView mTxtViewSubmit;
 
     private int[] mResourceIds = {
             R.drawable.s_apositive,R.drawable.s_anegative,R.drawable.s_bpositive,R.drawable.s_bnegative,R.drawable.s_opositive,
@@ -39,6 +48,10 @@ public class BloodGroupFragment extends Fragment implements View.OnClickListener
         View view = inflater.inflate(R.layout.fragment_bloodgroup, container, false);
         initComponents(view);
         return view;
+    }
+
+    private void initFirebase() {
+        mDatabase = FirebaseDatabase.getInstance().getReference();
     }
 
     private void initComponents(View view){
@@ -86,6 +99,8 @@ public class BloodGroupFragment extends Fragment implements View.OnClickListener
                 mCBA1Positive,mCBA1Negative,mCBA1BPositive,mCBA1BNegative
         };
 
+        mTxtViewSubmit = (TextView)view.findViewById(R.id.txtNext);
+        initFirebase();
 
         setUpClickListeners();
 
@@ -107,6 +122,28 @@ public class BloodGroupFragment extends Fragment implements View.OnClickListener
         mCBA1Negative.setOnClickListener(this);
         mCBA1BPositive.setOnClickListener(this);
         mCBA1BNegative.setOnClickListener(this);
+
+        mTxtViewSubmit.setOnClickListener(v -> {
+            pushToFireBase();
+        });
+
+    }
+
+    private void pushToFireBase(){
+        String name = "Rohit";
+        String email = "bij@gmail.com";
+        HashMap<String,String> maps = new HashMap<>();
+        maps.put(name,email);
+        mDatabase.push().setValue(maps).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                  if(task.isSuccessful()){
+                      Toast.makeText(getContext(),"Added Successfully",Toast.LENGTH_LONG).show();
+                  }else{
+                      Toast.makeText(getContext(),"Error on adding the user",Toast.LENGTH_LONG).show();
+                  }
+            }
+        });
 
     }
 
