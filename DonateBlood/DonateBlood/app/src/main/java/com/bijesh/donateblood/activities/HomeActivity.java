@@ -1,11 +1,14 @@
 package com.bijesh.donateblood.activities;
 
 
+import android.Manifest;
 import android.content.BroadcastReceiver;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -26,14 +29,17 @@ import com.bijesh.donateblood.fragments.HomeFragment;
 import com.bijesh.donateblood.fragments.NavigationDrawerFragment;
 import com.bijesh.donateblood.fragments.RegisterFragment;
 import com.bijesh.donateblood.models.ui.NavigationModel;
+import com.bijesh.donateblood.utils.permissions.PermissionResultCallback;
+import com.bijesh.donateblood.utils.permissions.PermissionUtils;
 import com.bijesh.donateblood.utils.webservice.WebServiceUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by bijesh on 5/13/2015.
  */
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements PermissionResultCallback,ActivityCompat.OnRequestPermissionsResultCallback {
 
 
     private static final String TAG = HomeActivity.class.getCanonicalName();
@@ -47,6 +53,11 @@ public class HomeActivity extends AppCompatActivity {
     private android.support.v7.app.ActionBarDrawerToggle mDrawerToggle;
     private boolean backPressedToExitOnce = false;
     private CoordinatorLayout mainContainer;
+    // list of permissions
+
+    ArrayList<String> permissions=new ArrayList<>();
+
+    PermissionUtils permissionUtils;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +82,17 @@ public class HomeActivity extends AppCompatActivity {
 
 
         mMainFrameLayout = (FrameLayout) findViewById(R.id.home_container);
+        requestAppPermissions();
         init();
+
+    }
+
+    private void requestAppPermissions(){
+        permissionUtils=new PermissionUtils(getApplicationContext());
+
+        permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
+        permissions.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        permissionUtils.check_permission(permissions,"Explain here why the app needs permissions",1);
 
     }
 
@@ -96,6 +117,36 @@ public class HomeActivity extends AppCompatActivity {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         setupDrawerToggle();
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+
+        // redirects to utils
+
+        permissionUtils.onRequestPermissionsResult(requestCode,permissions,grantResults);
+
+    }
+
+    @Override
+    public void PermissionGranted(int request_code) {
+
+    }
+
+    @Override
+    public void PartialPermissionGranted(int request_code, ArrayList<String> granted_permissions) {
+
+    }
+
+    @Override
+    public void PermissionDenied(int request_code) {
+
+    }
+
+    @Override
+    public void NeverAskAgain(int request_code) {
 
     }
 

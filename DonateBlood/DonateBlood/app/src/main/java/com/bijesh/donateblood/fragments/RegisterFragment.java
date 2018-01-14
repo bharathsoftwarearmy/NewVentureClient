@@ -1,6 +1,7 @@
 package com.bijesh.donateblood.fragments;
 
 
+import android.Manifest;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -9,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.bijesh.donateblood.R;
+
+import java.util.ArrayList;
 
 
 /**
@@ -34,6 +37,11 @@ public class RegisterFragment extends BaseFragment {
         getActivity().getSupportFragmentManager().beginTransaction().
                 add(R.id.fragmentContainer,new FirstNameFragment(),"FirstName").commit();
     }
+
+    private void getLocation(){
+
+    }
+
 
 
 }

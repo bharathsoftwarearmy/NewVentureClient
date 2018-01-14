@@ -10,6 +10,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bijesh.donateblood.R;
+import com.bijesh.donateblood.models.ui.server.ContactDetails;
+import com.bijesh.donateblood.models.ui.server.RegisteredUser;
+import com.bijesh.donateblood.storage.DonateSharedPrefs;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.FirebaseDatabase;
@@ -132,8 +135,7 @@ public class BloodGroupFragment extends BaseFragment implements View.OnClickList
     private void pushToFireBase(){
         String name = "Rohit";
         String email = "bij@gmail.com";
-        HashMap<String,String> maps = new HashMap<>();
-        maps.put(name,email);
+        HashMap<String,RegisteredUser> maps = getData();
         mDatabase.push().setValue(maps).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -145,6 +147,23 @@ public class BloodGroupFragment extends BaseFragment implements View.OnClickList
             }
         });
 
+    }
+
+    private HashMap<String,RegisteredUser> getData(){
+        String name = DonateSharedPrefs.getInstance(getActivity()).getStringData(DonateSharedPrefs.FIRST_NAME,"");
+        String email = DonateSharedPrefs.getInstance(getActivity()).getStringData(DonateSharedPrefs.EMAIL,"");
+        String phone = DonateSharedPrefs.getInstance(getActivity()).getStringData(DonateSharedPrefs.PHONE, "");
+        String gender = DonateSharedPrefs.getInstance(getContext()).getStringData(DonateSharedPrefs.GENDER, "");
+        HashMap<String,RegisteredUser> map = new HashMap<>();
+        RegisteredUser registeredUser = new RegisteredUser();
+        ContactDetails contactDetails = new ContactDetails();
+        registeredUser.setName(name);
+        registeredUser.setGender(gender);
+        contactDetails.setEmail(email);
+        contactDetails.setPhone(phone);
+        registeredUser.setContactDetails(contactDetails);
+        map.put("Registered Contact 1",registeredUser);
+        return map;
     }
 
     @Override
